@@ -317,7 +317,7 @@ class AsyncAdapt_asyncpg_cursor:
                 self._rows = await prepared_stmt.fetch(*parameters)
                 status = prepared_stmt.get_statusmsg()
 
-                reg = re.match(r"(?:UPDATE|DELETE|INSERT \d+) (\d+)", status)
+                reg = re.match(r"(?:UPDATE|DELETE|SELECT|INSERT \d+) (\d+)", status)
                 if reg:
                     self.rowcount = int(reg.group(1))
                 else:
