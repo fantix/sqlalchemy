@@ -3,6 +3,7 @@ from . import compat
 
 if compat.py3k:
     import asyncio
+    from inspect import iscoroutinefunction
     from ._concurrency_py3k import await_only
     from ._concurrency_py3k import await_fallback
     from ._concurrency_py3k import greenlet
@@ -19,3 +20,6 @@ else:
 
     def greenlet_spawn(fn, *args, **kw):
         raise ValueError("Cannot use this function in py2.")
+
+    def iscoroutinefunction(fn):
+        return False
